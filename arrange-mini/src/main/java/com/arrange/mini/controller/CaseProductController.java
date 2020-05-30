@@ -69,7 +69,7 @@ public class CaseProductController {
     @GetMapping("/saveProduct")
     @ApiOperation(value = "新增商品")
     public CommonResult<Object> saveProduct( @ApiIgnore BaseCriteria criteria){
-        System.out.println("------------------------");
+        System.out.println("--------------新增商品----------");
         return CommonResult.failed();
     }
 
