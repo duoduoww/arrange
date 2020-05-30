@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.arrange.mini.mapper.CaseProductMapper">
+  <resultMap id="BaseResultMap" type="com.arrange.mini.domain.CaseProduct">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="group_id" jdbcType="INTEGER" property="groupId" />
+    <result column="company_id" jdbcType="BIGINT" property="companyId" />
+    <result column="business_id" jdbcType="INTEGER" property="businessId" />
+    <result column="component" jdbcType="VARCHAR" property="component" />
+    <result column="breadth" jdbcType="VARCHAR" property="breadth" />
+    <result column="weight" jdbcType="VARCHAR" property="weight" />
+    <result column="size" jdbcType="VARCHAR" property="size" />
+    <result column="qr_img" jdbcType="VARCHAR" property="qrImg" />
+    <result column="cover_img" jdbcType="VARCHAR" property="coverImg" />
+    <result column="imgs" jdbcType="VARCHAR" property="imgs" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="top_roof" jdbcType="INTEGER" property="topRoof" />
+    <result column="popularity" jdbcType="INTEGER" property="popularity" />
+    <result column="collection_num" jdbcType="INTEGER" property="collectionNum" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column="created_date" jdbcType="TIMESTAMP" property="createdDate" />
+    <result column="last_updated_by" jdbcType="VARCHAR" property="lastUpdatedBy" />
+    <result column="last_updated_date" jdbcType="TIMESTAMP" property="lastUpdatedDate" />
+    <result column="group_name" jdbcType="VARCHAR" property="groupName" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, name, group_id, company_id, business_id, component, breadth, weight, size, qr_img, 
+    cover_img, imgs, remark, top_roof, popularity, collection_num, status, version, created_by, 
+    created_date, last_updated_by, last_updated_date
+  </sql>
+
+  <select id="queryProductList" resultMap="BaseResultMap">
+    select cp.*,cg.name as 'group_name' from b_case_product cp
+    left join b_case_group cg on cp.group_id = cg.id
+    where cp.company_id = #{companyId} and cp.status = 1
+    <if test="search != null and search != ''">
+      and cp.name like CONCAT('%',#{search},'%')
+    </if>
+  </select>
+
+  <select id="getProductInfo" resultMap="BaseResultMap">
+    select cp.*,cg.name as 'group_name' from b_case_product cp
+    left join b_case_group cg on cp.group_id = cg.id
+    where cp.company_id = #{companyId} and cp.status = 0 and cp.id = #{id}
+  </select>
+
+</mapper>

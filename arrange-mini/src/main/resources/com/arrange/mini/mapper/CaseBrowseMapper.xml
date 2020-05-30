@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.arrange.mini.mapper.CaseBrowseMapper">
+  <resultMap id="BaseResultMap" type="com.arrange.mini.domain.CaseBrowse">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="customer_id" jdbcType="INTEGER" property="customerId" />
+    <result column="resident" jdbcType="INTEGER" property="resident" />
+    <result column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="resident_type" jdbcType="INTEGER" property="residentType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, customer_id, resident, company_id, create_time, product_id, resident_type
+  </sql>
+
+</mapper>

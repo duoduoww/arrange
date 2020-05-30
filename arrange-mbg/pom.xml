@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.arrange</groupId>
+        <artifactId>arrangement</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>arrange-mbg</artifactId>
+    <name>arrange-mbg</name>
+    <version>1.0-SNAPSHOT</version>
+    <description>Demo project for Spring Boot</description>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+
+        <!--mysql   自动生成-->
+        <dependency>
+            <groupId>org.mybatis.generator</groupId>
+            <artifactId>mybatis-generator-core</artifactId>
+            <version>1.3.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis.generator</groupId>
+            <artifactId>mybatis-generator-maven-plugin</artifactId>
+            <version>1.3.7</version>
+        </dependency>
+
+        <!--实体类表的注解-->
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.1-api</artifactId>
+            <version>1.0.2.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.5.0</version>
+        </dependency>
+
+    </dependencies>
+
+</project>

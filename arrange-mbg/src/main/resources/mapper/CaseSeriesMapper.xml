@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.arrangement.dao.CaseSeriesMapper">
+  <resultMap id="BaseResultMap" type="com.arrangement.entity.CaseSeries">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="type_id" jdbcType="VARCHAR" property="typeId" />
+    <result column="labels_id" jdbcType="VARCHAR" property="labelsId" />
+    <result column="product_id" jdbcType="VARCHAR" property="productId" />
+    <result column="company_id" jdbcType="BIGINT" property="companyId" />
+    <result column="business_id" jdbcType="INTEGER" property="businessId" />
+    <result column="img_label" jdbcType="VARCHAR" property="imgLabel" />
+    <result column="imgs" jdbcType="VARCHAR" property="imgs" />
+    <result column="two_imgs" jdbcType="VARCHAR" property="twoImgs" />
+    <result column="three_imgs" jdbcType="VARCHAR" property="threeImgs" />
+    <result column="top_roof" jdbcType="INTEGER" property="topRoof" />
+    <result column="popularity" jdbcType="INTEGER" property="popularity" />
+    <result column="collection_num" jdbcType="INTEGER" property="collectionNum" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column="created_date" jdbcType="TIMESTAMP" property="createdDate" />
+    <result column="last_updated_by" jdbcType="VARCHAR" property="lastUpdatedBy" />
+    <result column="last_updated_date" jdbcType="TIMESTAMP" property="lastUpdatedDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, type_id, labels_id, product_id, company_id, business_id, img_label, imgs, 
+    two_imgs, three_imgs, top_roof, popularity, collection_num, status, version, created_by, 
+    created_date, last_updated_by, last_updated_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from b_case_series
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from b_case_series
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.arrangement.entity.CaseSeries">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into b_case_series (id, name, type_id, 
+      labels_id, product_id, company_id, 
+      business_id, img_label, imgs, 
+      two_imgs, three_imgs, top_roof, 
+      popularity, collection_num, status, 
+      version, created_by, created_date, 
+      last_updated_by, last_updated_date)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{typeId,jdbcType=VARCHAR}, 
+      #{labelsId,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR}, #{companyId,jdbcType=BIGINT}, 
+      #{businessId,jdbcType=INTEGER}, #{imgLabel,jdbcType=VARCHAR}, #{imgs,jdbcType=VARCHAR}, 
+      #{twoImgs,jdbcType=VARCHAR}, #{threeImgs,jdbcType=VARCHAR}, #{topRoof,jdbcType=INTEGER}, 
+      #{popularity,jdbcType=INTEGER}, #{collectionNum,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{version,jdbcType=INTEGER}, #{createdBy,jdbcType=VARCHAR}, #{createdDate,jdbcType=TIMESTAMP}, 
+      #{lastUpdatedBy,jdbcType=VARCHAR}, #{lastUpdatedDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.arrangement.entity.CaseSeries">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into b_case_series
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      id,
+      <if test="name != null">
+        name,
+      </if>
+      <if test="typeId != null">
+        type_id,
+      </if>
+      <if test="labelsId != null">
+        labels_id,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="businessId != null">
+        business_id,
+      </if>
+      <if test="imgLabel != null">
+        img_label,
+      </if>
+      <if test="imgs != null">
+        imgs,
+      </if>
+      <if test="twoImgs != null">
+        two_imgs,
+      </if>
+      <if test="threeImgs != null">
+        three_imgs,
+      </if>
+      <if test="topRoof != null">
+        top_roof,
+      </if>
+      <if test="popularity != null">
+        popularity,
+      </if>
+      <if test="collectionNum != null">
+        collection_num,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="createdDate != null">
+        created_date,
+      </if>
+      <if test="lastUpdatedBy != null">
+        last_updated_by,
+      </if>
+      <if test="lastUpdatedDate != null">
+        last_updated_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{id,jdbcType=INTEGER},
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null">
+        #{typeId,jdbcType=VARCHAR},
+      </if>
+      <if test="labelsId != null">
+        #{labelsId,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="businessId != null">
+        #{businessId,jdbcType=INTEGER},
+      </if>
+      <if test="imgLabel != null">
+        #{imgLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="imgs != null">
+        #{imgs,jdbcType=VARCHAR},
+      </if>
+      <if test="twoImgs != null">
+        #{twoImgs,jdbcType=VARCHAR},
+      </if>
+      <if test="threeImgs != null">
+        #{threeImgs,jdbcType=VARCHAR},
+      </if>
+      <if test="topRoof != null">
+        #{topRoof,jdbcType=INTEGER},
+      </if>
+      <if test="popularity != null">
+        #{popularity,jdbcType=INTEGER},
+      </if>
+      <if test="collectionNum != null">
+        #{collectionNum,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null">
+        #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedBy != null">
+        #{lastUpdatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatedDate != null">
+        #{lastUpdatedDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.arrangement.entity.CaseSeries">
+    update b_case_series
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null">
+        type_id = #{typeId,jdbcType=VARCHAR},
+      </if>
+      <if test="labelsId != null">
+        labels_id = #{labelsId,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        company_id = #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="businessId != null">
+        business_id = #{businessId,jdbcType=INTEGER},
+      </if>
+      <if test="imgLabel != null">
+        img_label = #{imgLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="imgs != null">
+        imgs = #{imgs,jdbcType=VARCHAR},
+      </if>
+      <if test="twoImgs != null">
+        two_imgs = #{twoImgs,jdbcType=VARCHAR},
+      </if>
+      <if test="threeImgs != null">
+        three_imgs = #{threeImgs,jdbcType=VARCHAR},
+      </if>
+      <if test="topRoof != null">
+        top_roof = #{topRoof,jdbcType=INTEGER},
+      </if>
+      <if test="popularity != null">
+        popularity = #{popularity,jdbcType=INTEGER},
+      </if>
+      <if test="collectionNum != null">
+        collection_num = #{collectionNum,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null">
+        created_date = #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedBy != null">
+        last_updated_by = #{lastUpdatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatedDate != null">
+        last_updated_date = #{lastUpdatedDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.arrangement.entity.CaseSeries">
+    update b_case_series
+    set name = #{name,jdbcType=VARCHAR},
+      type_id = #{typeId,jdbcType=VARCHAR},
+      labels_id = #{labelsId,jdbcType=VARCHAR},
+      product_id = #{productId,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=BIGINT},
+      business_id = #{businessId,jdbcType=INTEGER},
+      img_label = #{imgLabel,jdbcType=VARCHAR},
+      imgs = #{imgs,jdbcType=VARCHAR},
+      two_imgs = #{twoImgs,jdbcType=VARCHAR},
+      three_imgs = #{threeImgs,jdbcType=VARCHAR},
+      top_roof = #{topRoof,jdbcType=INTEGER},
+      popularity = #{popularity,jdbcType=INTEGER},
+      collection_num = #{collectionNum,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      version = #{version,jdbcType=INTEGER},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      created_date = #{createdDate,jdbcType=TIMESTAMP},
+      last_updated_by = #{lastUpdatedBy,jdbcType=VARCHAR},
+      last_updated_date = #{lastUpdatedDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

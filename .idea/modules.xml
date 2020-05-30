@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/arrange-common/arrange-common.iml" filepath="$PROJECT_DIR$/arrange-common/arrange-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/arrange-mbg/arrange-mbg.iml" filepath="$PROJECT_DIR$/arrange-mbg/arrange-mbg.iml" />
+      <module fileurl="file://$PROJECT_DIR$/arrange-mini/arrange-mini.iml" filepath="$PROJECT_DIR$/arrange-mini/arrange-mini.iml" />
+      <module fileurl="file://$PROJECT_DIR$/arrangement.iml" filepath="$PROJECT_DIR$/arrangement.iml" />
+    </modules>
+  </component>
+</project>

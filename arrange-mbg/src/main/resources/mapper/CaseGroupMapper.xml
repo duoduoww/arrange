@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.arrangement.dao.CaseGroupMapper">
+  <resultMap id="BaseResultMap" type="com.arrangement.entity.CaseGroup">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="series_img" jdbcType="VARCHAR" property="seriesImg" />
+    <result column="business_id" jdbcType="INTEGER" property="businessId" />
+    <result column="company_id" jdbcType="BIGINT" property="companyId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="status" jdbcType="BIT" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, series_img, business_id, company_id, create_time, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from b_case_group
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from b_case_group
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.arrangement.entity.CaseGroup">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into b_case_group (id, name, series_img, 
+      business_id, company_id, create_time, 
+      status)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{seriesImg,jdbcType=VARCHAR}, 
+      #{businessId,jdbcType=INTEGER}, #{companyId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.arrangement.entity.CaseGroup">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into b_case_group
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      id,
+      <if test="name != null">
+        name,
+      </if>
+      <if test="seriesImg != null">
+        series_img,
+      </if>
+      <if test="businessId != null">
+        business_id,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{id,jdbcType=BIGINT},
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="seriesImg != null">
+        #{seriesImg,jdbcType=VARCHAR},
+      </if>
+      <if test="businessId != null">
+        #{businessId,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.arrangement.entity.CaseGroup">
+    update b_case_group
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="seriesImg != null">
+        series_img = #{seriesImg,jdbcType=VARCHAR},
+      </if>
+      <if test="businessId != null">
+        business_id = #{businessId,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        company_id = #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.arrangement.entity.CaseGroup">
+    update b_case_group
+    set name = #{name,jdbcType=VARCHAR},
+      series_img = #{seriesImg,jdbcType=VARCHAR},
+      business_id = #{businessId,jdbcType=INTEGER},
+      company_id = #{companyId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
