@@ -71,7 +71,6 @@ public class CaseProductController {
     public CommonResult<Object> saveProduct( @ApiIgnore BaseCriteria criteria){
         System.out.println("------------------------");
         System.out.println("------------------------");
-        System.out.println("------------------------");
         return CommonResult.failed();
     }
 
