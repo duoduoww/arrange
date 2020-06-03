@@ -2,11 +2,7 @@ package com.arrange.mini.service;
 
 import com.arrange.common.api.CommonResult;
 import com.arrange.mini.domain.CaseProduct;
-import com.arrange.mini.dto.BaseCriteria;
-import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.IService;
-import com.github.pagehelper.PageInfo;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 

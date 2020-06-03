@@ -7,14 +7,11 @@ import com.arrange.mini.dto.BaseCriteria;
 import com.arrange.mini.service.CaseGroupService;
 import com.arrange.mini.service.CaseProductService;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.plugins.Page;
-import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
@@ -54,9 +51,9 @@ public class CaseProductController {
     @ApiOperation(value = "商品列表")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "companyId",value = "公司id",required = true,paramType = "query"),
-            @ApiImplicitParam(name = "search",value = "search",required = false,paramType = "query"),
-            @ApiImplicitParam(name = "pageNo",value = "第几页",required = false,paramType = "query"),
-            @ApiImplicitParam(name = "pageSize",value = "每页行数",required = false,paramType = "query")
+            @ApiImplicitParam(name = "search",value = "search",paramType = "query"),
+            @ApiImplicitParam(name = "pageNo",value = "第几页",paramType = "query"),
+            @ApiImplicitParam(name = "pageSize",value = "每页行数",paramType = "query")
     })
     @ResponseBody
     public CommonResult<Object> getProductList(@RequestParam Integer companyId,@RequestParam(value = "search",defaultValue = "") String search,@RequestParam(value = "pageNo", defaultValue = "1") Integer pageNo,@RequestParam( value = "pageSize",defaultValue = "10") Integer pageSize){
@@ -69,9 +66,7 @@ public class CaseProductController {
     @GetMapping("/saveProduct")
     @ApiOperation(value = "新增商品")
     public CommonResult<Object> saveProduct( @ApiIgnore BaseCriteria criteria){
-        System.out.println("------------------------");
-        System.out.println("------------------------");
-        System.out.println("------------------------");
+        System.out.println("--------------新增商品----------");
         return CommonResult.failed();
     }
 
