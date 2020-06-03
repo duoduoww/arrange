@@ -45,7 +45,7 @@
   <select id="getProductInfo" resultMap="BaseResultMap">
     select cp.*,cg.name as 'group_name' from b_case_product cp
     left join b_case_group cg on cp.group_id = cg.id
-    where cp.company_id = #{companyId} and cp.status = 0 and cp.id = #{id}
+    where cp.company_id = #{companyId} and cp.status = 1 and cp.id = #{id}
   </select>
 
 </mapper>
