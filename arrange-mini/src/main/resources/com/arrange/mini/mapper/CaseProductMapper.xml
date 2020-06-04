@@ -24,6 +24,9 @@
     <result column="created_date" jdbcType="TIMESTAMP" property="createdDate" />
     <result column="last_updated_by" jdbcType="VARCHAR" property="lastUpdatedBy" />
     <result column="last_updated_date" jdbcType="TIMESTAMP" property="lastUpdatedDate" />
+  </resultMap>
+
+  <resultMap id="productResult" type="com.arrange.mini.dto.result.ProductResult" extends="BaseResultMap">
     <result column="group_name" jdbcType="VARCHAR" property="groupName" />
   </resultMap>
 
@@ -40,12 +43,23 @@
     <if test="search != null and search != ''">
       and cp.name like CONCAT('%',#{search},'%')
     </if>
+    <if test="groupId > 0">
+      and cp.group_id = #{groupId}
+    </if>
   </select>
 
-  <select id="getProductInfo" resultMap="BaseResultMap">
+  <select id="getProductInfo" resultMap="productResult">
     select cp.*,cg.name as 'group_name' from b_case_product cp
     left join b_case_group cg on cp.group_id = cg.id
     where cp.company_id = #{companyId} and cp.status = 1 and cp.id = #{id}
   </select>
 
+  <update id="updateCollNum" >
+    update b_case_product set collection_num = collection_num
+    <choose>
+        <when test="type == 1 "> + #{coll}</when>
+        <when test="type == 2 "> - #{coll}</when>
+    </choose>
+    where company_id = #{companyId} and id = #{id}
+  </update>
 </mapper>

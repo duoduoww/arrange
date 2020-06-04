@@ -1,6 +1,7 @@
 package com.arrange.mini.domain;
 
 import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableName;
 import lombok.Data;
 import org.apache.ibatis.type.Alias;
 
@@ -13,7 +14,7 @@ import java.util.Date;
  * b_case_product
  * @author kzc
  */
-@Table(name = "b_case_product")
+@TableName(value = "b_case_product")
 @Alias("caseProduct")
 @Data
 public class CaseProduct {
@@ -150,9 +151,4 @@ public class CaseProduct {
     @Column(name = "last_updated_date")
     private Date lastUpdatedDate;
 
-    /**
-     * 分组名称
-     */
-    @TableField(exist = false)
-    private String groupName;
 }

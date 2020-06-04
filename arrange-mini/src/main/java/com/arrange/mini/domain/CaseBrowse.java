@@ -1,5 +1,6 @@
 package com.arrange.mini.domain;
 
+import com.baomidou.mybatisplus.annotations.TableName;
 import lombok.Data;
 import org.apache.ibatis.type.Alias;
 
@@ -12,7 +13,7 @@ import java.util.Date;
  * b_case_browse
  * @author kzc
  */
-@Table(name = "b_case_browse")
+@TableName(value = "b_case_browse")
 @Alias("caseBrowse")
 @Data
 public class CaseBrowse {

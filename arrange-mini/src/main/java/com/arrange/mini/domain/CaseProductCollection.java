@@ -1,5 +1,10 @@
 package com.arrange.mini.domain;
 
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.apache.ibatis.type.Alias;
 
@@ -12,7 +17,7 @@ import java.util.Date;
  * b_case_product_collection
  * @author kzc
  */
-@Table(name = "b_case_product_collection")
+@TableName(value = "b_case_product_collection")
 @Alias("caseProductCollection")
 @Data
 public class CaseProductCollection {
@@ -21,41 +26,49 @@ public class CaseProductCollection {
      */
     @Id
     @Column(name = "id")
+    @TableId(value="id", type= IdType.AUTO)
+    @ApiModelProperty(hidden = true)
     private Integer id;
 
     /**
      * 商品id
      */
-    @Column(name = "product_id")
+    @TableField(value = "product_id")
+    @ApiModelProperty(value = "商品id",required = true)
     private Integer productId;
 
     /**
      * 客户id
      */
-    @Column(name = "customer_id")
+    @TableField(value = "customer_id")
+    @ApiModelProperty(value = "客户id",required = true)
     private Integer customerId;
 
     /**
      * 公司id
      */
-    @Column(name = "company_id")
+    @TableField(value = "company_id")
+    @ApiModelProperty(value = "公司id",required = true)
     private Integer companyId;
 
     /**
      * 总店id
      */
-    @Column(name = "business_id")
+    @TableField(value = "business_id")
+    @ApiModelProperty(value = "总公司id",required = true)
     private Integer businessId;
 
     /**
      * =-1删除,=1有效 =0撤销
      */
-    @Column(name = "status")
+    @TableField(value = "status")
+    @ApiModelProperty(hidden = true)
     private Integer status;
 
     /**
      * 创建时间
      */
-    @Column(name = "create_time")
+    @TableField(value = "create_time")
+    @ApiModelProperty(hidden = true)
     private Date createTime;
 }

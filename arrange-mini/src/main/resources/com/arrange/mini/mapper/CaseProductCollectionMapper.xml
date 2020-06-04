@@ -10,8 +10,34 @@
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
+
+  <resultMap id="productCollResult" type="com.arrange.mini.dto.result.ProductCollResult" extends="BaseResultMap">
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="popularity" jdbcType="INTEGER" property="popularity" />
+    <result column="collection_num" jdbcType="INTEGER" property="collectionNum" />
+    <result column="cover_img" jdbcType="VARCHAR" property="coverImg" />
+    <result column="group_name" jdbcType="VARCHAR" property="groupName" />
+  </resultMap>
+
   <sql id="Base_Column_List">
     id, product_id, customer_id, company_id, business_id, status, create_time
   </sql>
 
+  <select id="getCustomerCollList" resultMap="productCollResult">
+    SELECT cpc.*,pc.`name`,pc.cover_img,pc.popularity,pc.collection_num,cg.name as 'group_name'
+    FROM b_case_product_collection cpc
+    LEFT JOIN b_case_product  pc on cpc.product_id = pc.id
+    LEFT JOIN b_case_group cg on pc.group_id = cg.id
+    where cpc.customer_id = #{customerId} and cpc.company_id = #{companyId} and cpc.`status` = 1
+  </select>
+
+  <select id="checkColl" resultType="int">
+    select count(1) from b_case_product_collection
+    where customer_id = #{customerId} and product_id = #{productId} and status = 1
+  </select>
+
+  <update id="updateCancel" >
+    update b_case_product_collection set status = 0
+    where customer_id = #{customerId}  and id = #{id}
+  </update>
 </mapper>

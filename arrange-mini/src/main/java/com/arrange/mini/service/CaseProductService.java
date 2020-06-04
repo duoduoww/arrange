@@ -2,16 +2,16 @@ package com.arrange.mini.service;
 
 import com.arrange.common.api.CommonResult;
 import com.arrange.mini.domain.CaseProduct;
+import com.arrange.mini.dto.BaseCriteria;
+import com.arrange.mini.dto.result.ProductResult;
 import com.baomidou.mybatisplus.service.IService;
-
-import java.util.List;
 
 /**
  * @author kzc
  */
 public interface CaseProductService extends IService<CaseProduct> {
 
-    CommonResult<Object> queryProductList(Integer companyId, String search, Integer pageNo, Integer pageSize);
+    CommonResult<Object> queryProductList(BaseCriteria criteria);
 
     /**
      * 获取单个商品信息
@@ -19,6 +19,6 @@ public interface CaseProductService extends IService<CaseProduct> {
      * @param id 商品id
      * @return 商品信息
      */
-    CaseProduct getProductInfo(Integer companyId, Integer id);
+    ProductResult getProductInfo(Integer companyId, Integer id, Integer customerId);
 
 }

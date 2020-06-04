@@ -2,8 +2,8 @@ package com.arrange.mini.controller;
 
 import com.arrange.common.api.CommonResult;
 import com.arrange.mini.domain.CaseGroup;
-import com.arrange.mini.domain.CaseProduct;
 import com.arrange.mini.dto.BaseCriteria;
+import com.arrange.mini.dto.result.ProductResult;
 import com.arrange.mini.service.CaseGroupService;
 import com.arrange.mini.service.CaseProductService;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
@@ -13,7 +13,6 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
-import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.List;
 
@@ -49,36 +48,21 @@ public class CaseProductController {
 
     @GetMapping("/getProductList")
     @ApiOperation(value = "商品列表")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "companyId",value = "公司id",required = true,paramType = "query"),
-            @ApiImplicitParam(name = "search",value = "search",paramType = "query"),
-            @ApiImplicitParam(name = "pageNo",value = "第几页",paramType = "query"),
-            @ApiImplicitParam(name = "pageSize",value = "每页行数",paramType = "query")
-    })
     @ResponseBody
-    public CommonResult<Object> getProductList(@RequestParam Integer companyId,@RequestParam(value = "search",defaultValue = "") String search,@RequestParam(value = "pageNo", defaultValue = "1") Integer pageNo,@RequestParam( value = "pageSize",defaultValue = "10") Integer pageSize){
-        return caseProductService.queryProductList(companyId,search,pageNo,pageSize);
-    }
-
-
-
-    @ResponseBody
-    @GetMapping("/saveProduct")
-    @ApiOperation(value = "新增商品")
-    public CommonResult<Object> saveProduct( @ApiIgnore BaseCriteria criteria){
-        System.out.println("--------------新增商品----------");
-        return CommonResult.failed();
+    public CommonResult<Object> getProductList(@ModelAttribute BaseCriteria criteria){
+        return caseProductService.queryProductList(criteria);
     }
 
     @GetMapping("/getProductInfo")
     @ApiOperation(value = "商品详情")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "companyId",value = "公司id",required = true,paramType = "query"),
-            @ApiImplicitParam(name = "id",value = "商品id",required = true,paramType = "query")
+            @ApiImplicitParam(name = "id",value = "商品id",required = true,paramType = "query"),
+            @ApiImplicitParam(name = "customerId",value = "客户id",paramType = "query")
     })
     @ResponseBody
-    public CommonResult<Object> getProductInfo(Integer companyId,Integer id){
-        CaseProduct product = caseProductService.getProductInfo(companyId, id);
+    public CommonResult<Object> getProductInfo(Integer companyId,Integer id,Integer customerId){
+        ProductResult product = caseProductService.getProductInfo(companyId, id, customerId);
         return CommonResult.success(product);
     }
 }
